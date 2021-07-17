@@ -74,6 +74,8 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
             deadline={ttl}
             setDeadline={setTtl}
           />
+
+          {/*
           <Text bold fontSize="20px" mt="32px">
             {t('Interface Settings')}
           </Text>
@@ -118,6 +120,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
             </RowFixed>
             <PancakeToggle checked={audioPlay} onChange={toggleSetAudioMode} />
           </Flex>
+          */}
         </AutoColumn>
       </ModalBody>
     </Modal>

@@ -1,4 +1,6 @@
 /// <reference types="react-scripts" />
+declare module '*.ttf'
+declare module '*.otf'
 
 interface Window {
   ethereum?: {
