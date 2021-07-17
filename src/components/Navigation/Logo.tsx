@@ -21,10 +21,10 @@ const LogoImage = styled.img`
 `
 
 const LogoText = styled.h2`
-  margin-left: 0.2em;
-  font-size: 2em;
+  margin-left: 0.25em;
+  font-size: 1.8em;
   font-family: Mont, sans-serif;
-  margin-top: 0.2em;
+  margin-top: 0.15em;
   color: #ffffff;
   background: -webkit-linear-gradient(#756e99, #bf8a86, #d0bb97);
   -webkit-background-clip: text;
@@ -35,7 +35,7 @@ const Logo: React.FC<Props> = ({ isDark }) => {
   return (
     <Flex>
       <LogoWrapper>
-        <LogoImage alt="" src={logo} height={MENU_HEIGHT * 0.6} width={MENU_HEIGHT * 0.6} />
+        <LogoImage alt="" src={logo} height={MENU_HEIGHT * 0.5} width={MENU_HEIGHT * 0.5} />
         <LogoText>PUBESWAP</LogoText>
       </LogoWrapper>
     </Flex>
