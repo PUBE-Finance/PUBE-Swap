@@ -14,6 +14,7 @@ import PageLoader from './components/Loader/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import { Navigation } from './components/Navigation'
+import { useThemeManager } from './state/user/hooks'
 // Views included in the main bundle
 // import Swap from './views/Swap'
 
