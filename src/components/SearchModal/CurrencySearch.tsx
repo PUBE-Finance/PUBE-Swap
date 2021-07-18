@@ -1,12 +1,12 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState } from 'react'
 import { Currency, ETHER, Token } from '@pancakeswap/sdk'
-import { Text, Input, Box } from '@pancakeswap/uikit'
+import { Box, Input, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
+import { useAllTokens, useFoundOnInactiveList, useIsUserAddedToken, useToken } from '../../hooks/Tokens'
 import { isAddress } from '../../utils'
 import Column, { AutoColumn } from '../Layout/Column'
 import Row from '../Layout/Row'
@@ -29,13 +29,13 @@ interface CurrencySearchProps {
 const swapSound = new Audio('swap.mp3')
 
 function CurrencySearch({
-  selectedCurrency,
-  onCurrencySelect,
-  otherSelectedCurrency,
-  showCommonBases,
-  showImportView,
-  setImportToken,
-}: CurrencySearchProps) {
+                          selectedCurrency,
+                          onCurrencySelect,
+                          otherSelectedCurrency,
+                          showCommonBases,
+                          showImportView,
+                          setImportToken,
+                        }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
 
@@ -114,16 +114,22 @@ function CurrencySearch({
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
 
+  const PUBEToken: Token = new Token(56, '0x3916984fa787d89b648ccd8d60b5ff07e0e8e4f4', 18, 'PUBE', 'Proudly Unwashed Balls Empire')
+
+  const currencies = (filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens)
+
+  currencies.unshift(PUBEToken)
+
   return (
     <>
       <div>
-        <AutoColumn gap="16px">
+        <AutoColumn gap='16px'>
           <Row>
             <Input
-              id="token-search-input"
+              id='token-search-input'
               placeholder={t('Search name or paste address')}
-              scale="lg"
-              autoComplete="off"
+              scale='lg'
+              autoComplete='off'
               value={searchQuery}
               ref={inputRef as RefObject<HTMLInputElement>}
               onChange={handleInput}
@@ -139,13 +145,11 @@ function CurrencySearch({
             <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
           </Column>
         ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
-          <Box margin="24px -24px">
+          <Box margin='24px -24px'>
             <CurrencyList
               height={390}
               showETH={showETH}
-              currencies={
-                filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
-              }
+              currencies={ currencies }
               breakIndex={inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined}
               onCurrencySelect={handleCurrencySelect}
               otherCurrency={otherSelectedCurrency}
@@ -157,7 +161,7 @@ function CurrencySearch({
           </Box>
         ) : (
           <Column style={{ padding: '20px', height: '100%' }}>
-            <Text color="textSubtle" textAlign="center" mb="20px">
+            <Text color='textSubtle' textAlign='center' mb='20px'>
               {t('No results found.')}
             </Text>
           </Column>
