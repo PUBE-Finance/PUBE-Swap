@@ -2,7 +2,7 @@
   "short_name": "PUBESwap",
   "name": "PUBESwap",
   "description": "Buy and sell PUBE token",
-  "homepage_url": "https://pancakeswap.finance",
+  "homepage_url": "https://pube.finance",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",
@@ -10,13 +10,13 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
+      "src": "logo.webp",
+      "type": "image/webp",
       "sizes": "256x256"
     },
     {
       "src": "logo.png",
-      "type": "image/png",
+      "type": "image/webp",
       "sizes": "512x512"
     }
   ]
