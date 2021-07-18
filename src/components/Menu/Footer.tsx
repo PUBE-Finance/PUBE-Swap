@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   margin-top: 16px;
-  visibility: hidden;
 
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;

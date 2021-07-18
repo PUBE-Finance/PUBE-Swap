@@ -21,10 +21,13 @@ const StyledNav = styled.nav<{ showMenu: boolean }>`
   top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
   left: 0;
   transition: top 0.2s;
+  
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-left: 8px;
+  
+  padding-left: 16px;
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
@@ -34,9 +37,29 @@ const StyledNav = styled.nav<{ showMenu: boolean }>`
   transform: translate3d(0, 0, 0);
 `
 
+const NavContainer = styled.div`
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 1080px;
+  }
+
+`
+
 const BodyWrapper = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 `
 
 const Inner = styled.div<{ showMenu: boolean }>`
@@ -91,18 +114,20 @@ const Navigation: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
-        <Logo isDark={isDark} />
-        {!!login && !!logout && (
-          <Flex>
-            <UserBlock account={account} login={login} logout={logout} />
-          </Flex>
-        )}
+        <NavContainer>
+          <Logo isDark={isDark} />
+          {!!login && !!logout && (
+            <Flex>
+              <UserBlock account={account} login={login} logout={logout} />
+            </Flex>
+          )}
+        </NavContainer>
       </StyledNav>
-      <BodyWrapper>
+      <BodyWrapper >
         <Inner showMenu={showMenu}>{children}</Inner>
       </BodyWrapper>
     </Wrapper>
   )
 }
 
-export default Navigation
+export default Navigation;

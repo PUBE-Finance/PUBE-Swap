@@ -9,16 +9,17 @@ const StyledPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   padding: 16px;
   padding-bottom: 0;
-  min-height: alc(100vh - 64px);
   background-color: #fff;
   background-image: url(${bg});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  min-height: calc(100vh - 64px);
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
@@ -38,10 +39,11 @@ const StyledPage = styled.div`
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
   return (
     <StyledPage {...props}>
-      <SubNav />
+      {/* <SubNav />
       {children}
-      <Flex flexGrow={1} />
-      <Footer />
+      <Flex flexGrow={2} />
+      <Footer /> */}
+      {children}
     </StyledPage>
   )
 }

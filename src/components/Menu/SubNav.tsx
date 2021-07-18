@@ -5,7 +5,6 @@ import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
 
 const StyledNav = styled.nav`
   margin-bottom: 40px;
-  visibility: hidden;
 `
 
 const getActiveIndex = (pathname: string): number => {

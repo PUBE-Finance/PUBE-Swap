@@ -11,7 +11,6 @@ interface Props {
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 0.5em;
 `
 
 const LogoImage = styled.img`
