@@ -14,7 +14,7 @@ const LogoWrapper = styled.div`
 `
 
 const LogoImage = styled.img`
-  background: -webkit-linear-gradient(#756e99, #bf8a86, #d0bb97);
+  background: -webkit-linear-gradient(#d3e3bf, #d3e3bf, #d3e3bf,#d3e3bf,#d3e3bf);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
@@ -23,9 +23,11 @@ const LogoText = styled.h2`
   margin-left: 0.25em;
   font-size: 1.8em;
   color: #ffffff;
-  background: -webkit-linear-gradient(#756e99, #bf8a86, #d0bb97);
+  background: -webkit-linear-gradient(-60deg, #d3e3bf,#eaa083,#bb818f,#4356a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: Mont, sans-serif;
+  margin-top: 0.12em;
 `
 
 const Logo: React.FC<Props> = ({ isDark }) => {

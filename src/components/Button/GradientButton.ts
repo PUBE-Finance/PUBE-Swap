@@ -26,12 +26,12 @@ const GradientButton = styled(StyledButton)`
   font-family: Mont, sans-serif;
   color: white;
 
-  background: linear-gradient(-45deg, #756e99, #bf8a86, #d0bb97);
+  background: linear-gradient(-45deg, #d3e3bf,#eaa083,#bb818f,#4356a8);
   background-size: 400% 400%;
 
-  -webkit-animation: ${gradientKeyframes} 20s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
-  -moz-animation: ${gradientKeyframes} 20s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
-  animation: ${gradientKeyframes} 20s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
+  -webkit-animation: ${gradientKeyframes} 10s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
+  -moz-animation: ${gradientKeyframes} 10s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
+  animation: ${gradientKeyframes} 10s ease infinite, ${glowKeyframes} 3s ease-in-out infinite alternate;
 
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
