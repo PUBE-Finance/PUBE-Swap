@@ -43,7 +43,8 @@ import Page from '../Page'
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  //color: ${({ theme }) => theme.colors.secondary};
+  color: #bf8a86;
 `
 
 export default function Swap({ history }: RouteComponentProps) {

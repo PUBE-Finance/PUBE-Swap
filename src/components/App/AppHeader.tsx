@@ -37,7 +37,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
           </Heading>
           <Flex alignItems="center">
             {helper && <QuestionHelper text={helper} mr="4px" />}
-            <Text color="textSubtle" fontSize="14px">
+            <Text color="#bf8a86" fontSize="14px">
               {subtitle}
             </Text>
           </Flex>

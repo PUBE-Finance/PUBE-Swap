@@ -39,7 +39,8 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 `
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
+  //background-color: ${({ theme }) => theme.colors.input};
+  background-color: #756e99;
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
 interface CurrencyInputPanelProps {
@@ -116,7 +117,7 @@ export default function CurrencyInputPanel({
               />
               {account && currency && showMaxButton && label !== 'To' && (
                 <Button onClick={onMax} scale="sm" variant="text">
-                  MAX
+                  <p style={{color:'#d0bb97'}}>MAX</p>
                 </Button>
               )}
             </>

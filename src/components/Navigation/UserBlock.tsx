@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Login, useWalletModal } from '@pancakeswap/uikit'
 
+import GradientButton from '../Button/GradientButton'
+
 interface Props {
   account?: string
   login: Login
@@ -13,7 +15,12 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
   return (
     <div>
       {account ? (
-        <Button
+
+        <GradientButton onClick={() => {
+          onPresentAccountModal()
+        }}>{accountEllipsis}</GradientButton>
+
+/*        <Button
           scale="sm"
           variant="tertiary"
           onClick={() => {
@@ -21,16 +28,22 @@ const UserBlock: React.FC<Props> = ({ account, login, logout }) => {
           }}
         >
           {accountEllipsis}
-        </Button>
+        </Button> */
+
       ) : (
-        <Button
+
+        <GradientButton onClick={() => {
+          onPresentConnectModal()
+        }}>Connect</GradientButton>
+
+       /* <Button
           scale="sm"
           onClick={() => {
             onPresentConnectModal()
           }}
         >
-          Connect
-        </Button>
+        Connect
+        </Button> */
       )}
     </div>
   )
