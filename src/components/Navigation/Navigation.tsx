@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import styled from 'styled-components'
-import { Flex } from '@pancakeswap/uikit'
+import { Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
+import throttle from 'lodash/throttle'
 import useAuth from '../../hooks/useAuth'
 
 import { MENU_HEIGHT } from './config'
@@ -15,9 +16,9 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const StyledNav = styled.nav`
+const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
-  top: 0px;
+  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
   left: 0;
   transition: top 0.2s;
   display: flex;
@@ -38,9 +39,9 @@ const BodyWrapper = styled.div`
   display: flex;
 `
 
-const Inner = styled.div`
+const Inner = styled.div<{ showMenu: boolean }>`
   flex-grow: 1;
-  margin-top: ${MENU_HEIGHT}px;
+  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT}px` : 0)};
   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0);
   max-width: 100%;
@@ -53,10 +54,43 @@ const Navigation: React.FC = ({ children }) => {
   const { login, logout } = useAuth()
 
   const { isDark, toggleTheme } = useTheme()
+  const { isXl } = useMatchBreakpoints()
+  const isMobile = isXl === false
+  const [showMenu, setShowMenu] = useState(true)
+  const refPrevOffset = useRef(window.pageYOffset)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentOffset = window.pageYOffset
+      const isBottomOfPage = window.document.body.clientHeight === currentOffset + window.innerHeight
+      const isTopOfPage = currentOffset === 0
+      // Always show the menu when user reach the top
+      if (isTopOfPage) {
+        setShowMenu(true)
+      }
+      // Avoid triggering anything at the bottom because of layout shift
+      else if (!isBottomOfPage) {
+        if (currentOffset < refPrevOffset.current) {
+          // Has scroll up
+          setShowMenu(true)
+        } else {
+          // Has scroll down
+          setShowMenu(false)
+        }
+      }
+      refPrevOffset.current = currentOffset
+    }
+    const throttledHandleScroll = throttle(handleScroll, 200)
+
+    window.addEventListener('scroll', throttledHandleScroll)
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll)
+    }
+  }, [])
 
   return (
     <Wrapper>
-      <StyledNav>
+      <StyledNav showMenu={showMenu}>
         <Logo isDark={isDark} />
         {!!login && !!logout && (
           <Flex>
@@ -65,7 +99,7 @@ const Navigation: React.FC = ({ children }) => {
         )}
       </StyledNav>
       <BodyWrapper>
-        <Inner>{children}</Inner>
+        <Inner showMenu={showMenu}>{children}</Inner>
       </BodyWrapper>
     </Wrapper>
   )

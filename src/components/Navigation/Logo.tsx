@@ -23,8 +23,6 @@ const LogoImage = styled.img`
 const LogoText = styled.h2`
   margin-left: 0.25em;
   font-size: 1.8em;
-  font-family: Mont, sans-serif;
-  margin-top: 0.15em;
   color: #ffffff;
   background: -webkit-linear-gradient(#756e99, #bf8a86, #d0bb97);
   -webkit-background-clip: text;

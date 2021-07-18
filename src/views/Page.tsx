@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex } from '@pancakeswap/uikit'
+import bg from "../assets/images/swap_bg.webp"
+import SubNav from '../components/Menu/SubNav'
+import Footer from '../components/Menu/Footer'
 
 const StyledPage = styled.div`
   display: flex;
@@ -10,8 +13,12 @@ const StyledPage = styled.div`
   width: 100%;
   padding: 16px;
   padding-bottom: 0;
-  min-height: calc(100vh - 64px);
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  min-height: alc(100vh - 64px);
+  background-color: #fff;
+  background-image: url(${bg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
@@ -31,10 +38,10 @@ const StyledPage = styled.div`
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
   return (
     <StyledPage {...props}>
-      {/* <SubNav /> */}
+      <SubNav />
       {children}
-      {/* <Flex flexGrow={1} /> */}
-      {/* <Footer /> */}
+      <Flex flexGrow={1} />
+      <Footer />
     </StyledPage>
   )
 }
