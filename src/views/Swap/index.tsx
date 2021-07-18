@@ -20,7 +20,7 @@ import TokenWarningModal from './components/TokenWarningModal'
 import ProgressSteps from './components/ProgressSteps'
 import { AppHeader, AppBody } from '../../components/App'
 import UnlockButton from '../../components/UnlockButton'
-
+import GradientButton from '../../components/Button/GradientButton'
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
@@ -291,7 +291,7 @@ export default function Swap({ history }: RouteComponentProps) {
                       setApprovalSubmitted(false) // reset 2 step UI for approvals
                       onSwitchTokens()
                     }}
-                    color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                    color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? '#bb818f' : 'text'}
                   />
                 </ArrowWrapper>
                 {recipient === null && !showWrap && isExpertMode ? (
@@ -374,11 +374,11 @@ export default function Swap({ history }: RouteComponentProps) {
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>
-                <Button
-                  variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
+                <GradientButton
+                  // variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   onClick={approveCallback}
                   disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                  width="48%"
+                  // width="48%"
                 >
                   {approval === ApprovalState.PENDING ? (
                     <AutoRow gap="6px" justify="center">
@@ -389,9 +389,9 @@ export default function Swap({ history }: RouteComponentProps) {
                   ) : (
                     t('Approve %asset%', { asset: currencies[Field.INPUT]?.symbol ?? '' })
                   )}
-                </Button>
-                <Button
-                  variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                </GradientButton>
+                <GradientButton
+                  // variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -405,7 +405,7 @@ export default function Swap({ history }: RouteComponentProps) {
                       onPresentConfirmModal()
                     }
                   }}
-                  width="48%"
+                  // width="48%"
                   id="swap-button"
                   disabled={
                     !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
@@ -416,11 +416,11 @@ export default function Swap({ history }: RouteComponentProps) {
                     : priceImpactSeverity > 2
                     ? t('Swap Anyway')
                     : t('Swap')}
-                </Button>
+                </GradientButton>
               </RowBetween>
             ) : (
-              <Button
-                variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+              <GradientButton
+                // variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                 onClick={() => {
                   if (isExpertMode) {
                     handleSwap()
@@ -435,7 +435,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   }
                 }}
                 id="swap-button"
-                width="100%"
+                // width="100%"
                 disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
               >
                 {swapInputError ||
@@ -444,7 +444,7 @@ export default function Swap({ history }: RouteComponentProps) {
                     : priceImpactSeverity > 2
                     ? t('Swap Anyway')
                     : t('Swap'))}
-              </Button>
+              </GradientButton>
             )}
             {showApproveFlow && (
               <Column style={{ marginTop: '1rem' }}>

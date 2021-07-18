@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, useWalletModal } from '@pancakeswap/uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
+import GradientButton from './Button/GradientButton'
 
 const UnlockButton = (props) => {
   const { t } = useTranslation()
@@ -9,9 +10,9 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
+    <GradientButton onClick={onPresentConnectModal} {...props}>
       {t('Unlock Wallet')}
-    </Button>
+    </GradientButton>
   )
 }
 
